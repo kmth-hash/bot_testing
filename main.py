@@ -1,5 +1,6 @@
 import discord
 from records import passkey
+from keywords import *
 
 client = discord.Client()
 
@@ -12,8 +13,10 @@ async def on_message(message):
    
     if message.author == client.user:
         return
-    
-    if message.content.startswith('$hello'):
+    if message.content.lower() in greeting:
+        await message.channel.send(send_greeting(message.content.lower()))
+
+    if message.content.startswith('Howdy'):
         await message.channel.send('Wassup  !')
 
 
